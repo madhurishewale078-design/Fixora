@@ -1,0 +1,521 @@
+{
+  "info": {
+    "name": "FIXORA API - 'Diagnose First. Book Only When Needed.'",
+    "description": "Comprehensive Postman collection for the Fixora Smart Home Service Platform.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/api/v1"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"madhurishewale078@gmail.com\", \"password\": \"Admin@Fixora2025\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Customer Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"rahul.sharma@example.com\", \"password\": \"User@12345\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Technician Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"rajesh.electrician@example.com\", \"password\": \"Tech@12345\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Customer Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"full_name\": \"Kavita Rao\", \"email\": \"kavita.rao@example.com\", \"phone\": \"+91 98888 77766\", \"password\": \"User@12345\", \"address\": \"Flat 201, Orchid Residency, Pune\", \"city\": \"Pune\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register/customer",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register",
+                "customer"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Technician Register (Pending Status)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"full_name\": \"Manoj Shinde\", \"email\": \"manoj.shinde@example.com\", \"phone\": \"+91 97777 66655\", \"password\": \"Tech@12345\", \"category_id\": 1, \"experience_years\": 4, \"service_area\": \"Aundh & Wakad\", \"address\": \"Pune, Maharashtra\", \"bio\": \"Certified electrician with industrial wiring experience.\", \"hourly_rate\": 350.0}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register/technician",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register",
+                "technician"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Current User Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Services & Technicians",
+      "item": [
+        {
+          "name": "List Service Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/services/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "services",
+                "categories"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Services Catalog",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/services/items",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "services",
+                "items"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Approved Technicians",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/services/technicians?category_id=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "services",
+                "technicians"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Technician Profile & Reviews",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/services/technicians/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "services",
+                "technicians",
+                "1"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. AI Troubleshooting Assistant",
+      "item": [
+        {
+          "name": "Get Supported Diagnostic Problems",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/troubleshooting/problems",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "troubleshooting",
+                "problems"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Start Troubleshooting Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"problem_key\": \"fan_not_working\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/troubleshooting/start",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "troubleshooting",
+                "start"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Submit Diagnostic Answer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"session_token\": \"replace_with_active_session_token\", \"question_id\": \"q_fan_power\", \"selected_option_id\": \"opt_power_no\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/troubleshooting/answer",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "troubleshooting",
+                "answer"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Bookings Workflow",
+      "item": [
+        {
+          "name": "Create Service Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"technician_id\": 1, \"service_id\": 1, \"problem_description\": \"Ceiling fan stopped spinning.\", \"diagnosis_summary\": \"Fixora Diagnosis: Capacitor fault detected.\", \"address\": \"Flat 302, Green Glen, Kothrud\", \"city\": \"Pune\", \"preferred_date\": \"2025-09-12\", \"preferred_time\": \"11:00 AM\", \"estimated_cost\": 349.0}"
+            },
+            "url": {
+              "raw": "{{base_url}}/bookings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "bookings"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get My Bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/bookings/my",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "bookings",
+                "my"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Booking Status (Technician)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\": \"ACCEPTED\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/bookings/1/status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "bookings",
+                "1",
+                "status"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Admin Management",
+      "item": [
+        {
+          "name": "Get Admin Analytics Metrics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/analytics",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "analytics"
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Pending Technicians",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/technicians?status_filter=PENDING",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "technicians"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Approve Technician Application",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\": \"APPROVED\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/admin/technicians/6/status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "technicians",
+                "6",
+                "status"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Resolve Complaint",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\": \"RESOLVED\", \"admin_response\": \"Technician re-visited and checked joint sealing without additional charge.\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/admin/complaints/1/resolve",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "complaints",
+                "1",
+                "resolve"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
